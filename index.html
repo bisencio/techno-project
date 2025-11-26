@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barangay Connect Scheduler - Documentation</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/src/style.css">
+</head>
+
+<body class="bg-gray-900">
+    <!-- Progress Bar -->
+    <div class="progress-bar" id="progressBar" style="width: 0%"></div>
+
+    <!-- Navigation Dots -->
+    <div class="nav-dots" id="navDots">
+        <div class="nav-dot active" data-section="0" onclick="scrollToSection(0)">
+            <span class="nav-dot-label">Home</span>
+        </div>
+        <div class="nav-dot" data-section="1" onclick="scrollToSection(1)">
+            <span class="nav-dot-label">Overview</span>
+        </div>
+        <div class="nav-dot" data-section="2" onclick="scrollToSection(2)">
+            <span class="nav-dot-label">User Flow</span>
+        </div>
+        <div class="nav-dot" data-section="3" onclick="scrollToSection(3)">
+            <span class="nav-dot-label">Scripts</span>
+        </div>
+        <div class="nav-dot" data-section="4" onclick="scrollToSection(4)">
+            <span class="nav-dot-label">Technical</span>
+        </div>
+        <div class="nav-dot" data-section="5" onclick="scrollToSection(5)">
+            <span class="nav-dot-label">KPIs</span>
+        </div>
+    </div>
+
+    <!-- Scroll Hint -->
+    <div class="scroll-hint" id="scrollHint">
+        <span>Scroll to explore</span>
+        <i class="fas fa-arrow-right"></i>
+    </div>
+
+    <!-- Horizontal Scroll Container -->
+    <div class="horizontal-scroll-container" id="mainContainer">
+
+        <!-- Section 0: Hero -->
+        <section class="section-panel gradient-bg active" id="section-0">
+            <div class="h-full flex flex-col justify-center items-center px-8">
+                <div
+                    class="section-content delay-1 inline-flex items-center gap-2 bg-white/20 text-white px-4 py-2 rounded-full mb-6">
+                    <span class="pulse-dot w-2 h-2 bg-green-400 rounded-full"></span>
+                    <span class="text-sm">Digital Transformation for Local Governance</span>
+                </div>
+                <h1 class="section-content delay-2 text-5xl md:text-7xl font-bold text-white mb-6 text-center">
+                    Barangay Connect<br>Scheduler
+                </h1>
+                <p class="section-content delay-3 text-xl text-blue-100 max-w-3xl mx-auto mb-10 text-center">
+                    A centralized appointment booking system via Facebook Messenger & SMS Hotline to eliminate long
+                    queues in Philippine barangay offices.
+                </p>
+                <div class="section-content delay-4 flex flex-wrap justify-center gap-4">
+                    <div
+                        class="bg-white/20 backdrop-blur px-6 py-3 rounded-xl text-white hover:bg-white/30 transition cursor-pointer">
+                        <i class="fab fa-facebook-messenger mr-2"></i> Messenger Bot
+                    </div>
+                    <div
+                        class="bg-white/20 backdrop-blur px-6 py-3 rounded-xl text-white hover:bg-white/30 transition cursor-pointer">
+                        <i class="fas fa-sms mr-2"></i> SMS Hotline
+                    </div>
+                    <div
+                        class="bg-white/20 backdrop-blur px-6 py-3 rounded-xl text-white hover:bg-white/30 transition cursor-pointer">
+                        <i class="fas fa-bell mr-2"></i> Smart Alerts
+                    </div>
+                </div>
+                <div class="section-content delay-5 mt-16">
+                    <button onclick="scrollToSection(1)"
+                        class="bg-white text-blue-600 px-8 py-4 rounded-full font-semibold hover:shadow-xl transition transform hover:scale-105">
+                        Explore Project <i class="fas fa-arrow-right ml-2"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 1: Overview -->
+        <section class="section-panel bg-white" id="section-1">
+            <div class="h-full overflow-y-auto py-16 px-8">
+                <div class="max-w-6xl mx-auto">
+                    <h2 class="section-content text-4xl font-bold text-center text-gray-800 mb-12">
+                        <i class="fas fa-bullseye text-blue-500 mr-3"></i>Vision & Mission
+                    </h2>
+
+                    <div class="grid md:grid-cols-2 gap-8 mb-16">
+                        <div
+                            class="card-animate bg-gradient-to-br from-blue-50 to-cyan-50 p-8 rounded-2xl border border-blue-100 hover:shadow-xl transition">
+                            <div class="w-14 h-14 bg-blue-600 rounded-xl flex items-center justify-center mb-4">
+                                <i class="fas fa-eye text-white text-2xl"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-gray-800 mb-4">Vision Statement</h3>
+                            <p class="text-gray-600 text-lg leading-relaxed">
+                                "To build a future where every Filipino can avoid long queues for essential services,
+                                positioning the barangay as the model of efficient and people-centered local
+                                governance."
+                            </p>
+                        </div>
+                        <div
+                            class="card-animate bg-gradient-to-br from-green-50 to-emerald-50 p-8 rounded-2xl border border-green-100 hover:shadow-xl transition">
+                            <div class="w-14 h-14 bg-green-600 rounded-xl flex items-center justify-center mb-4">
+                                <i class="fas fa-bullseye text-white text-2xl"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-gray-800 mb-4">Mission Statement</h3>
+                            <p class="text-gray-600 text-lg leading-relaxed">
+                                "Barangay Connect Scheduler aims to use popular digital tools like Messenger and SMS to
+                                provide an easy-to-use, transparent, and accessible appointment system that cuts down
+                                waiting time."
+                            </p>
+                        </div>
+                    </div>
+
+                    <h3 class="section-content text-2xl font-bold text-center text-gray-800 mb-8">The Problem We Solve
+                    </h3>
+                    <div class="grid md:grid-cols-3 gap-6 mb-16">
+                        <div class="card-animate text-center p-6 bg-red-50 rounded-2xl hover:shadow-lg transition">
+                            <div
+                                class="w-20 h-20 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <i class="fas fa-users text-red-500 text-3xl"></i>
+                            </div>
+                            <h4 class="font-semibold text-lg mb-2">Long Physical Queues</h4>
+                            <p class="text-gray-500">Residents waste hours waiting in line for basic services</p>
+                        </div>
+                        <div class="card-animate text-center p-6 bg-orange-50 rounded-2xl hover:shadow-lg transition">
+                            <div
+                                class="w-20 h-20 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <i class="fas fa-clock text-orange-500 text-3xl"></i>
+                            </div>
+                            <h4 class="font-semibold text-lg mb-2">Inefficient Manual System</h4>
+                            <p class="text-gray-500">No visibility on wait times or queue status</p>
+                        </div>
+                        <div class="card-animate text-center p-6 bg-yellow-50 rounded-2xl hover:shadow-lg transition">
+                            <div
+                                class="w-20 h-20 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <i class="fas fa-mobile-alt text-yellow-600 text-3xl"></i>
+                            </div>
+                            <h4 class="font-semibold text-lg mb-2">Limited Accessibility</h4>
+                            <p class="text-gray-500">Not everyone has smartphones or internet</p>
+                        </div>
+                    </div>
+
+                    <h3 class="section-content text-2xl font-bold text-gray-800 mb-6">Target Users</h3>
+                    <div class="grid md:grid-cols-4 gap-4">
+                        <div
+                            class="card-animate bg-gray-50 p-5 rounded-xl hover:shadow-lg transition transform hover:-translate-y-1">
+                            <i class="fas fa-user-tie text-blue-500 text-3xl mb-3"></i>
+                            <h5 class="font-semibold text-lg">Working Professionals</h5>
+                            <p class="text-sm text-gray-500">Need quick service during breaks</p>
+                        </div>
+                        <div
+                            class="card-animate bg-gray-50 p-5 rounded-xl hover:shadow-lg transition transform hover:-translate-y-1">
+                            <i class="fas fa-user-friends text-green-500 text-3xl mb-3"></i>
+                            <h5 class="font-semibold text-lg">Senior Citizens</h5>
+                            <p class="text-sm text-gray-500">Prefer SMS, need accessibility</p>
+                        </div>
+                        <div
+                            class="card-animate bg-gray-50 p-5 rounded-xl hover:shadow-lg transition transform hover:-translate-y-1">
+                            <i class="fas fa-home text-purple-500 text-3xl mb-3"></i>
+                            <h5 class="font-semibold text-lg">Homemakers</h5>
+                            <p class="text-sm text-gray-500">Busy schedules, need flexibility</p>
+                        </div>
+                        <div
+                            class="card-animate bg-gray-50 p-5 rounded-xl hover:shadow-lg transition transform hover:-translate-y-1">
+                            <i class="fas fa-graduation-cap text-orange-500 text-3xl mb-3"></i>
+                            <h5 class="font-semibold text-lg">Students</h5>
+                            <p class="text-sm text-gray-500">Tech-savvy, prefer Messenger</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: User Flow -->
+        <section class="section-panel bg-gray-100" id="section-2">
+            <div class="h-full overflow-y-auto py-16 px-8">
+                <div class="max-w-7xl mx-auto">
+                    <h2 class="section-content text-4xl font-bold text-center text-gray-800 mb-4">
+                        <i class="fas fa-project-diagram text-blue-500 mr-3"></i>End-to-End User Journey
+                    </h2>
+                    <p class="section-content delay-1 text-center text-gray-600 mb-10 max-w-2xl mx-auto">
+                        Complete flowchart showing the booking process for both Messenger and SMS platforms
+                    </p>
+
+                    <!-- Platform Tabs -->
+                    <div class="section-content delay-2 flex justify-center mb-8">
+                        <div class="bg-white rounded-xl p-1 shadow-sm inline-flex">
+                            <button onclick="switchPlatform('messenger')" id="messengerTab"
+                                class="px-6 py-3 rounded-lg font-medium transition tab-active bg-blue-50">
+                                <i class="fab fa-facebook-messenger mr-2"></i> Messenger Flow
+                            </button>
+                            <button onclick="switchPlatform('sms')" id="smsTab"
+                                class="px-6 py-3 rounded-lg font-medium transition text-gray-500">
+                                <i class="fas fa-sms mr-2"></i> SMS Flow
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Messenger Flowchart -->
+                    <div id="messengerFlow" class="card-animate bg-white rounded-2xl p-8 shadow-lg">
+                        <div class="grid md:grid-cols-5 gap-4 items-start">
+                            <div class="flowchart-node bg-blue-50 border-2 border-blue-200 rounded-xl p-4 text-center">
+                                <div
+                                    class="w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center mx-auto mb-3 font-bold">
+                                    1</div>
+                                <h4 class="font-semibold text-blue-800 mb-2">User Opens Messenger</h4>
+                                <p class="text-xs text-gray-600">Searches for "Barangay [Name] Connect"</p>
+                                <div class="mt-3 text-blue-500"><i class="fas fa-arrow-right"></i></div>
+                            </div>
+                            <div class="flowchart-node bg-blue-50 border-2 border-blue-200 rounded-xl p-4 text-center">
+                                <div
+                                    class="w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center mx-auto mb-3 font-bold">
+                                    2</div>
+                                <h4 class="font-semibold text-blue-800 mb-2">Bot Greeting</h4>
+                                <p class="text-xs text-gray-600">Welcomes user, asks for registration</p>
+                                <div class="mt-3 text-blue-500"><i class="fas fa-arrow-right"></i></div>
+                            </div>
+                            <div
+                                class="flowchart-node bg-green-50 border-2 border-green-200 rounded-xl p-4 text-center">
+                                <div
+                                    class="w-10 h-10 bg-green-600 text-white rounded-full flex items-center justify-center mx-auto mb-3 font-bold">
+                                    3</div>
+                                <h4 class="font-semibold text-green-800 mb-2">User Registration</h4>
+                                <p class="text-xs text-gray-600">Full Name + Mobile Number</p>
+                                <div class="mt-3 text-green-500"><i class="fas fa-arrow-right"></i></div>
+                            </div>
+                            <div
+                                class="flowchart-node bg-purple-50 border-2 border-purple-200 rounded-xl p-4 text-center">
+                                <div
+                                    class="w-10 h-10 bg-purple-600 text-white rounded-full flex items-center justify-center mx-auto mb-3 font-bold">
+                                    4</div>
+                                <h4 class="font-semibold text-purple-800 mb-2">Service Selection</h4>
+                                <p class="text-xs text-gray-600">Quick reply buttons for services</p>
+                                <div class="mt-3 text-purple-500"><i class="fas fa-arrow-right"></i></div>
+                            </div>
+                            <div
+                                class="flowchart-node bg-orange-50 border-2 border-orange-200 rounded-xl p-4 text-center">
+                                <div
+                                    class="w-10 h-10 bg-orange-600 text-white rounded-full flex items-center justify-center mx-auto mb-3 font-bold">
+                                    5</div>
+                                <h4 class="font-semibold text-orange-800 mb-2">Date/Time Selection</h4>
+                                <p class="text-xs text-gray-600">Shows available slots</p>
+                            </div>
+                        </div>
+
+                        <div class="flex justify-center my-6">
+                            <i class="fas fa-arrow-down text-3xl text-gray-300"></i>
+                        </div>
+
+                        <div class="grid md:grid-cols-4 gap-4 items-start max-w-4xl mx-auto">
+                            <div class="flowchart-node bg-cyan-50 border-2 border-cyan-200 rounded-xl p-4 text-center">
+                                <div
+                                    class="w-10 h-10 bg-cyan-600 text-white rounded-full flex items-center justify-center mx-auto mb-3 font-bold">
+                                    6</div>
+                                <h4 class="font-semibold text-cyan-800 mb-2">Confirmation</h4>
+                                <p class="text-xs text-gray-600">Reference # + Details sent</p>
+                            </div>
+                            <div class="flowchart-node bg-teal-50 border-2 border-teal-200 rounded-xl p-4 text-center">
+                                <div
+                                    class="w-10 h-10 bg-teal-600 text-white rounded-full flex items-center justify-center mx-auto mb-3 font-bold">
+                                    7</div>
+                                <h4 class="font-semibold text-teal-800 mb-2">Day-Before Reminder</h4>
+                                <p class="text-xs text-gray-600">Automated notification</p>
+                            </div>
+                            <div
+                                class="flowchart-node bg-amber-50 border-2 border-amber-200 rounded-xl p-4 text-center">
+                                <div
+                                    class="w-10 h-10 bg-amber-600 text-white rounded-full flex items-center justify-center mx-auto mb-3 font-bold">
+                                    8</div>
+                                <h4 class="font-semibold text-amber-800 mb-2">Queue Alert</h4>
+                                <p class="text-xs text-gray-600">"3-5 people away" notification</p>
+                            </div>
+                            <div
+                                class="flowchart-node bg-emerald-50 border-2 border-emerald-200 rounded-xl p-4 text-center">
+                                <div
+                                    class="w-10 h-10 bg-emerald-600 text-white rounded-full flex items-center justify-center mx-auto mb-3 font-bold">
+                                    9</div>
+                                <h4 class="font-semibold text-emerald-800 mb-2">Service Complete</h4>
+                                <p class="text-xs text-gray-600">Feedback request sent</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SMS Flowchart -->
+                    <div id="smsFlow" class="card-animate bg-white rounded-2xl p-8 shadow-lg hidden">
+                        <div class="grid md:grid-cols-5 gap-4 items-start">
+                            <div class="flowchart-node bg-gray-100 border-2 border-gray-300 rounded-xl p-4 text-center">
+                                <div
+                                    class="w-10 h-10 bg-gray-700 text-white rounded-full flex items-center justify-center mx-auto mb-3 font-bold">
+                                    1</div>
+                                <h4 class="font-semibold text-gray-800 mb-2">User Sends SMS</h4>
+                                <p class="text-xs text-gray-600">Texts "BOOK" to hotline</p>
+                                <div class="mt-3 text-gray-500"><i class="fas fa-arrow-right"></i></div>
+                            </div>
+                            <div class="flowchart-node bg-gray-100 border-2 border-gray-300 rounded-xl p-4 text-center">
+                                <div
+                                    class="w-10 h-10 bg-gray-700 text-white rounded-full flex items-center justify-center mx-auto mb-3 font-bold">
+                                    2</div>
+                                <h4 class="font-semibold text-gray-800 mb-2">Auto-Reply Menu</h4>
+                                <p class="text-xs text-gray-600">Receives service options 1-5</p>
+                                <div class="mt-3 text-gray-500"><i class="fas fa-arrow-right"></i></div>
+                            </div>
+                            <div
+                                class="flowchart-node bg-green-50 border-2 border-green-200 rounded-xl p-4 text-center">
+                                <div
+                                    class="w-10 h-10 bg-green-600 text-white rounded-full flex items-center justify-center mx-auto mb-3 font-bold">
+                                    3</div>
+                                <h4 class="font-semibold text-green-800 mb-2">User Replies</h4>
+                                <p class="text-xs text-gray-600">Format: [Service#] [Name]</p>
+                                <div class="mt-3 text-green-500"><i class="fas fa-arrow-right"></i></div>
+                            </div>
+                            <div
+                                class="flowchart-node bg-purple-50 border-2 border-purple-200 rounded-xl p-4 text-center">
+                                <div
+                                    class="w-10 h-10 bg-purple-600 text-white rounded-full flex items-center justify-center mx-auto mb-3 font-bold">
+                                    4</div>
+                                <h4 class="font-semibold text-purple-800 mb-2">Available Slots</h4>
+                                <p class="text-xs text-gray-600">System sends date options</p>
+                                <div class="mt-3 text-purple-500"><i class="fas fa-arrow-right"></i></div>
+                            </div>
+                            <div
+                                class="flowchart-node bg-orange-50 border-2 border-orange-200 rounded-xl p-4 text-center">
+                                <div
+                                    class="w-10 h-10 bg-orange-600 text-white rounded-full flex items-center justify-center mx-auto mb-3 font-bold">
+                                    5</div>
+                                <h4 class="font-semibold text-orange-800 mb-2">User Confirms</h4>
+                                <p class="text-xs text-gray-600">Replies with slot code</p>
+                            </div>
+                        </div>
+
+                        <div class="flex justify-center my-6">
+                            <i class="fas fa-arrow-down text-3xl text-gray-300"></i>
+                        </div>
+
+                        <div class="grid md:grid-cols-3 gap-4 items-start max-w-3xl mx-auto">
+                            <div class="flowchart-node bg-cyan-50 border-2 border-cyan-200 rounded-xl p-4 text-center">
+                                <div
+                                    class="w-10 h-10 bg-cyan-600 text-white rounded-full flex items-center justify-center mx-auto mb-3 font-bold">
+                                    6</div>
+                                <h4 class="font-semibold text-cyan-800 mb-2">Booking Confirmed</h4>
+                                <p class="text-xs text-gray-600">Receives REF# via SMS</p>
+                            </div>
+                            <div
+                                class="flowchart-node bg-amber-50 border-2 border-amber-200 rounded-xl p-4 text-center">
+                                <div
+                                    class="w-10 h-10 bg-amber-600 text-white rounded-full flex items-center justify-center mx-auto mb-3 font-bold">
+                                    7</div>
+                                <h4 class="font-semibold text-amber-800 mb-2">Queue Alert SMS</h4>
+                                <p class="text-xs text-gray-600">"Malapit na po kayo" alert</p>
+                            </div>
+                            <div
+                                class="flowchart-node bg-emerald-50 border-2 border-emerald-200 rounded-xl p-4 text-center">
+                                <div
+                                    class="w-10 h-10 bg-emerald-600 text-white rounded-full flex items-center justify-center mx-auto mb-3 font-bold">
+                                    8</div>
+                                <h4 class="font-semibold text-emerald-800 mb-2">Service Complete</h4>
+                                <p class="text-xs text-gray-600">Optional feedback via SMS</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Scripts -->
+        <section class="section-panel bg-gradient-to-br from-slate-900 to-slate-800" id="section-3">
+            <div class="h-full overflow-y-auto py-16 px-8">
+                <div class="max-w-7xl mx-auto">
+                    <h2 class="section-content text-4xl font-bold text-center text-white mb-4">
+                        <i class="fas fa-comments text-blue-400 mr-3"></i>Conversation Scripts
+                    </h2>
+                    <p class="section-content delay-1 text-center text-gray-400 mb-12 max-w-2xl mx-auto">
+                        Interactive demo of the chatbot and SMS hotline conversations
+                    </p>
+
+                    <div class="grid md:grid-cols-2 gap-8 mb-12">
+                        <!-- Messenger Demo -->
+                        <div class="card-animate">
+                            <h3 class="text-xl font-semibold mb-4 flex items-center gap-2 text-white">
+                                <i class="fab fa-facebook-messenger text-blue-500"></i> Messenger Chatbot
+                            </h3>
+                            <div class="bg-gray-800 rounded-2xl overflow-hidden shadow-xl">
+                                <div class="messenger-gradient p-4 text-white flex items-center gap-3">
+                                    <div class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">
+                                        <i class="fas fa-landmark"></i>
+                                    </div>
+                                    <div>
+                                        <p class="font-semibold">Barangay San Miguel Connect</p>
+                                        <p class="text-xs opacity-80">Usually responds instantly</p>
+                                    </div>
+                                </div>
+                                <div id="messengerChat" class="p-4 h-80 overflow-y-auto space-y-3 bg-gray-900"></div>
+                                <div class="p-4 bg-gray-800 border-t border-gray-700 flex gap-2">
+                                    <button onclick="runMessengerDemo()"
+                                        class="w-full bg-blue-600 text-white py-2 rounded-lg font-medium hover:bg-blue-700 transition">
+                                        <i class="fas fa-play mr-2"></i> Run Demo
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- SMS Demo -->
+                        <div class="card-animate">
+                            <h3 class="text-xl font-semibold mb-4 flex items-center gap-2 text-white">
+                                <i class="fas fa-sms text-green-500"></i> SMS Hotline
+                            </h3>
+                            <div class="sms-screen rounded-2xl overflow-hidden shadow-xl">
+                                <div class="bg-black/30 p-4 text-white flex items-center gap-3">
+                                    <div class="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center">
+                                        <i class="fas fa-comment-sms"></i>
+                                    </div>
+                                    <div>
+                                        <p class="font-semibold">0917-BRY-BOOK</p>
+                                        <p class="text-xs opacity-80">SMS Hotline</p>
+                                    </div>
+                                </div>
+                                <div id="smsChat" class="p-4 h-80 overflow-y-auto space-y-3"></div>
+                                <div class="p-4 bg-black/20 border-t border-white/10 flex gap-2">
+                                    <button onclick="runSmsDemo()"
+                                        class="w-full bg-green-600 text-white py-2 rounded-lg font-medium hover:bg-green-700 transition">
+                                        <i class="fas fa-play mr-2"></i> Run Demo
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Script Reference Cards -->
+                    <div class="grid md:grid-cols-3 gap-4">
+                        <div
+                            class="card-animate bg-white/10 backdrop-blur rounded-xl p-5 border border-white/20 hover:bg-white/20 transition">
+                            <div class="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center mb-3">
+                                <i class="fas fa-hand-wave text-white"></i>
+                            </div>
+                            <h4 class="font-semibold text-white mb-2">Initial Greeting</h4>
+                            <p class="text-gray-400 text-sm">Welcome message with registration prompt</p>
+                        </div>
+                        <div
+                            class="card-animate bg-white/10 backdrop-blur rounded-xl p-5 border border-white/20 hover:bg-white/20 transition">
+                            <div class="w-10 h-10 bg-green-600 rounded-lg flex items-center justify-center mb-3">
+                                <i class="fas fa-list text-white"></i>
+                            </div>
+                            <h4 class="font-semibold text-white mb-2">Service Menu</h4>
+                            <p class="text-gray-400 text-sm">Clear list of available barangay services</p>
+                        </div>
+                        <div
+                            class="card-animate bg-white/10 backdrop-blur rounded-xl p-5 border border-white/20 hover:bg-white/20 transition">
+                            <div class="w-10 h-10 bg-purple-600 rounded-lg flex items-center justify-center mb-3">
+                                <i class="fas fa-calendar text-white"></i>
+                            </div>
+                            <h4 class="font-semibold text-white mb-2">Date Selection</h4>
+                            <p class="text-gray-400 text-sm">Available slots with letter codes</p>
+                        </div>
+                        <div
+                            class="card-animate bg-white/10 backdrop-blur rounded-xl p-5 border border-white/20 hover:bg-white/20 transition">
+                            <div class="w-10 h-10 bg-cyan-600 rounded-lg flex items-center justify-center mb-3">
+                                <i class="fas fa-check-circle text-white"></i>
+                            </div>
+                            <h4 class="font-semibold text-white mb-2">Confirmation</h4>
+                            <p class="text-gray-400 text-sm">Reference number with full details</p>
+                        </div>
+                        <div
+                            class="card-animate bg-white/10 backdrop-blur rounded-xl p-5 border border-white/20 hover:bg-white/20 transition">
+                            <div class="w-10 h-10 bg-amber-600 rounded-lg flex items-center justify-center mb-3">
+                                <i class="fas fa-bell text-white"></i>
+                            </div>
+                            <h4 class="font-semibold text-white mb-2">Queue Alert</h4>
+                            <p class="text-gray-400 text-sm">"3-5 people away" notification</p>
+                        </div>
+                        <div
+                            class="card-animate bg-white/10 backdrop-blur rounded-xl p-5 border border-white/20 hover:bg-white/20 transition">
+                            <div class="w-10 h-10 bg-emerald-600 rounded-lg flex items-center justify-center mb-3">
+                                <i class="fas fa-star text-white"></i>
+                            </div>
+                            <h4 class="font-semibold text-white mb-2">Feedback</h4>
+                            <p class="text-gray-400 text-sm">Rating request after service</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Technical -->
+        <section class="section-panel bg-gray-50" id="section-4">
+            <div class="h-full overflow-y-auto py-16 px-8">
+                <div class="max-w-7xl mx-auto">
+                    <h2 class="section-content text-4xl font-bold text-center text-gray-800 mb-4">
+                        <i class="fas fa-cogs text-blue-500 mr-3"></i>Technical Requirements
+                    </h2>
+                    <p class="section-content delay-1 text-center text-gray-600 mb-12 max-w-2xl mx-auto">
+                        Low-cost, scalable infrastructure designed for local government units
+                    </p>
+
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+                        <div
+                            class="card-animate bg-white rounded-xl p-6 shadow-sm hover:shadow-xl transition transform hover:-translate-y-1">
+                            <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
+                                <i class="fas fa-database text-blue-600 text-xl"></i>
+                            </div>
+                            <h3 class="text-lg font-semibold mb-3">Database</h3>
+                            <ul class="space-y-2 text-sm text-gray-600">
+                                <li><i class="fas fa-check text-green-500 mr-2"></i>PostgreSQL/MySQL</li>
+                                <li><i class="fas fa-check text-green-500 mr-2"></i>Users, Appointments, Queue</li>
+                                <li><i class="fas fa-check text-green-500 mr-2"></i>5GB initial storage</li>
+                            </ul>
+                        </div>
+                        <div
+                            class="card-animate bg-white rounded-xl p-6 shadow-sm hover:shadow-xl transition transform hover:-translate-y-1">
+                            <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
+                                <i class="fas fa-server text-green-600 text-xl"></i>
+                            </div>
+                            <h3 class="text-lg font-semibold mb-3">Hosting</h3>
+                            <ul class="space-y-2 text-sm text-gray-600">
+                                <li><i class="fas fa-check text-green-500 mr-2"></i>DigitalOcean ($5-12/mo)</li>
+                                <li><i class="fas fa-check text-green-500 mr-2"></i>Free tier: Railway/Render</li>
+                                <li><i class="fas fa-check text-green-500 mr-2"></i>1GB RAM, 1 vCPU min</li>
+                            </ul>
+                        </div>
+                        <div
+                            class="card-animate bg-white rounded-xl p-6 shadow-sm hover:shadow-xl transition transform hover:-translate-y-1">
+                            <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
+                                <i class="fas fa-sms text-purple-600 text-xl"></i>
+                            </div>
+                            <h3 class="text-lg font-semibold mb-3">SMS Gateway</h3>
+                            <ul class="space-y-2 text-sm text-gray-600">
+                                <li><i class="fas fa-check text-green-500 mr-2"></i>Semaphore (₱0.35-0.50)</li>
+                                <li><i class="fas fa-check text-green-500 mr-2"></i>Chikka API alternative</li>
+                                <li><i class="fas fa-check text-green-500 mr-2"></i>Two-way SMS support</li>
+                            </ul>
+                        </div>
+                        <div
+                            class="card-animate bg-white rounded-xl p-6 shadow-sm hover:shadow-xl transition transform hover:-translate-y-1">
+                            <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
+                                <i class="fab fa-facebook-messenger text-blue-600 text-xl"></i>
+                            </div>
+                            <h3 class="text-lg font-semibold mb-3">Messenger Bot</h3>
+                            <ul class="space-y-2 text-sm text-gray-600">
+                                <li><i class="fas fa-check text-green-500 mr-2"></i>Facebook Graph API (Free)</li>
+                                <li><i class="fas fa-check text-green-500 mr-2"></i>Dialogflow/Wit.ai NLP</li>
+                                <li><i class="fas fa-check text-green-500 mr-2"></i>Quick Replies & Buttons</li>
+                            </ul>
+                        </div>
+                        <div
+                            class="card-animate bg-white rounded-xl p-6 shadow-sm hover:shadow-xl transition transform hover:-translate-y-1">
+                            <div class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mb-4">
+                                <i class="fas fa-code text-orange-600 text-xl"></i>
+                            </div>
+                            <h3 class="text-lg font-semibold mb-3">Backend</h3>
+                            <ul class="space-y-2 text-sm text-gray-600">
+                                <li><i class="fas fa-check text-green-500 mr-2"></i>Node.js/Python Flask</li>
+                                <li><i class="fas fa-check text-green-500 mr-2"></i>REST API endpoints</li>
+                                <li><i class="fas fa-check text-green-500 mr-2"></i>Webhooks for updates</li>
+                            </ul>
+                        </div>
+                        <div
+                            class="card-animate bg-white rounded-xl p-6 shadow-sm hover:shadow-xl transition transform hover:-translate-y-1">
+                            <div class="w-12 h-12 bg-cyan-100 rounded-lg flex items-center justify-center mb-4">
+                                <i class="fas fa-chart-line text-cyan-600 text-xl"></i>
+                            </div>
+                            <h3 class="text-lg font-semibold mb-3">Admin Dashboard</h3>
+                            <ul class="space-y-2 text-sm text-gray-600">
+                                <li><i class="fas fa-check text-green-500 mr-2"></i>React/Vue web app</li>
+                                <li><i class="fas fa-check text-green-500 mr-2"></i>Queue management</li>
+                                <li><i class="fas fa-check text-green-500 mr-2"></i>Role-based access</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Cost Table -->
+                    <div class="card-animate bg-white rounded-2xl p-8 shadow-lg">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-6">Monthly Cost Breakdown</h3>
+                        <div class="overflow-x-auto">
+                            <table class="w-full">
+                                <thead>
+                                    <tr class="bg-gray-50">
+                                        <th class="text-left p-4 font-semibold">Component</th>
+                                        <th class="text-left p-4 font-semibold">Option</th>
+                                        <th class="text-right p-4 font-semibold">Cost/Month</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y">
+                                    <tr>
+                                        <td class="p-4">Cloud Hosting</td>
+                                        <td class="p-4 text-gray-600">DigitalOcean Droplet</td>
+                                        <td class="p-4 text-right font-mono">₱300-600</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-4">SMS Gateway</td>
+                                        <td class="p-4 text-gray-600">~500 SMS via Semaphore</td>
+                                        <td class="p-4 text-right font-mono">₱175-250</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-4">Messenger</td>
+                                        <td class="p-4 text-gray-600">Meta Business Suite</td>
+                                        <td class="p-4 text-right font-mono text-green-600">FREE</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-4">Domain</td>
+                                        <td class="p-4 text-gray-600">.ph domain</td>
+                                        <td class="p-4 text-right font-mono">₱100-200</td>
+                                    </tr>
+                                    <tr class="bg-blue-50 font-semibold">
+                                        <td class="p-4" colspan="2">TOTAL ESTIMATED</td>
+                                        <td class="p-4 text-right font-mono text-blue-600">₱575 - ₱1,050</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: KPIs -->
+        <section class="section-panel gradient-bg" id="section-5">
+            <div class="h-full overflow-y-auto py-16 px-8">
+                <div class="max-w-7xl mx-auto">
+                    <h2 class="section-content text-4xl font-bold text-center text-white mb-4">
+                        <i class="fas fa-chart-bar mr-3"></i>Key Performance Indicators
+                    </h2>
+                    <p class="section-content delay-1 text-center text-blue-100 mb-12 max-w-2xl mx-auto">
+                        Metrics to measure adoption, efficiency, and user satisfaction
+                    </p>
+
+                    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+                        <div
+                            class="card-animate bg-white/10 backdrop-blur rounded-2xl p-6 text-white border border-white/20 hover:bg-white/20 transition">
+                            <div class="flex items-center justify-between mb-4">
+                                <i class="fas fa-users text-3xl opacity-80"></i>
+                                <span class="text-xs bg-white/20 px-2 py-1 rounded">Primary</span>
+                            </div>
+                            <h3 class="text-4xl font-bold mb-1" id="adoptionRate">0%</h3>
+                            <p class="text-blue-100">Adoption Rate</p>
+                            <div class="mt-4">
+                                <div class="text-sm mb-1">Target: 40% in 6 months</div>
+                                <div class="bg-white/20 rounded-full h-2">
+                                    <div class="bg-white rounded-full h-2 w-0 transition-all duration-1000"
+                                        id="adoptionBar"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div
+                            class="card-animate bg-white/10 backdrop-blur rounded-2xl p-6 text-white border border-white/20 hover:bg-white/20 transition">
+                            <div class="flex items-center justify-between mb-4">
+                                <i class="fas fa-user-times text-3xl opacity-80"></i>
+                                <span class="text-xs bg-red-500/50 px-2 py-1 rounded">Critical</span>
+                            </div>
+                            <h3 class="text-4xl font-bold mb-1" id="noShowRate">0%</h3>
+                            <p class="text-blue-100">No-Show Rate</p>
+                            <div class="mt-4">
+                                <div class="text-sm mb-1">Target: Below 15%</div>
+                                <div class="bg-white/20 rounded-full h-2">
+                                    <div class="bg-white rounded-full h-2 w-0 transition-all duration-1000"
+                                        id="noShowBar"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div
+                            class="card-animate bg-white/10 backdrop-blur rounded-2xl p-6 text-white border border-white/20 hover:bg-white/20 transition">
+                            <div class="flex items-center justify-between mb-4">
+                                <i class="fas fa-clock text-3xl opacity-80"></i>
+                                <span class="text-xs bg-green-500/50 px-2 py-1 rounded">Efficiency</span>
+                            </div>
+                            <h3 class="text-4xl font-bold mb-1" id="waitTime">0</h3>
+                            <p class="text-blue-100">Avg. Wait (min)</p>
+                            <div class="mt-4">
+                                <div class="text-sm mb-1">Target: Under 15 mins</div>
+                                <div class="bg-white/20 rounded-full h-2">
+                                    <div class="bg-white rounded-full h-2 w-0 transition-all duration-1000"
+                                        id="waitBar"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div
+                            class="card-animate bg-white/10 backdrop-blur rounded-2xl p-6 text-white border border-white/20 hover:bg-white/20 transition">
+                            <div class="flex items-center justify-between mb-4">
+                                <i class="fas fa-star text-3xl opacity-80"></i>
+                                <span class="text-xs bg-purple-500/50 px-2 py-1 rounded">Quality</span>
+                            </div>
+                            <h3 class="text-4xl font-bold mb-1" id="satisfaction">0</h3>
+                            <p class="text-blue-100">Satisfaction</p>
+                            <div class="mt-4">
+                                <div class="text-sm mb-1">Target: 4.5+ stars</div>
+                                <div class="bg-white/20 rounded-full h-2">
+                                    <div class="bg-white rounded-full h-2 w-0 transition-all duration-1000" id="satBar">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Live Dashboard -->
+                    <div class="card-animate bg-black/30 backdrop-blur rounded-2xl p-6 text-white">
+                        <div class="flex items-center justify-between mb-6">
+                            <div class="flex items-center gap-3">
+                                <div class="w-3 h-3 bg-green-500 rounded-full pulse-dot"></div>
+                                <span class="text-sm">Live Dashboard Preview</span>
+                            </div>
+                            <button onclick="animateKPIs()"
+                                class="bg-white/20 hover:bg-white/30 px-4 py-2 rounded-lg text-sm transition">
+                                <i class="fas fa-sync-alt mr-2"></i> Refresh
+                            </button>
+                        </div>
+                        <div class="grid md:grid-cols-3 gap-4">
+                            <div class="bg-white/10 rounded-xl p-4">
+                                <p class="text-gray-300 text-sm mb-1">Today's Bookings</p>
+                                <p class="text-3xl font-bold" id="todayBookings">0</p>
+                            </div>
+                            <div class="bg-white/10 rounded-xl p-4">
+                                <p class="text-gray-300 text-sm mb-1">Currently in Queue</p>
+                                <p class="text-3xl font-bold" id="currentQueue">0</p>
+                            </div>
+                            <div class="bg-white/10 rounded-xl p-4">
+                                <p class="text-gray-300 text-sm mb-1">Completed Today</p>
+                                <p class="text-3xl font-bold" id="completedToday">0</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Footer within last section -->
+                    <div class="mt-16 pt-8 border-t border-white/20 text-center">
+                        <div class="flex items-center justify-center gap-3 mb-4">
+                            <div class="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
+                                <i class="fas fa-calendar-check text-white"></i>
+                            </div>
+                            <span class="font-bold text-xl text-white">Barangay Connect Scheduler</span>
+                        </div>
+                        <p class="text-blue-100 text-sm mb-4">
+                            Transforming local governance through accessible digital services for every Filipino.
+                        </p>
+                        <p class="text-blue-200 text-xs">
+                            © 2024 Designed for Philippine Local Government Units
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script type="module" src="/src/main.js"></script>
+</body>
+
+</html>
