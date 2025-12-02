@@ -1,8 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
 @layer base {
     :root {
@@ -235,17 +233,6 @@ body {
     transform: translateY(-5px);
     background: rgba(255, 255, 255, 0.15);
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-}
-
-.icon-circle {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    display: flex;
-    top: 25px;
-    width: 30px;
-    height: 2px;
-    background: linear-gradient(90deg, rgba(255, 255, 255, 0.5), transparent);
 }
 
 .flow-step:last-child::after {

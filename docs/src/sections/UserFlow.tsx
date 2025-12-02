@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent } from '@/components/ui/card';
 
 interface UserFlowProps {
     isActive: boolean;
@@ -18,30 +20,32 @@ export const UserFlow: React.FC<UserFlowProps> = ({ isActive }) => {
 
                 {/* Platform Toggle */}
                 <div className="fade-item flex justify-center mb-8">
-                    <div className="bg-black/30 backdrop-blur rounded-full p-1 inline-flex">
-                        <button
+                    <div className="bg-black/30 backdrop-blur-md rounded-full p-1 inline-flex border border-white/10">
+                        <Button
+                            variant={activeTab === 'messenger' ? 'secondary' : 'ghost'}
                             onClick={() => setActiveTab('messenger')}
-                            className={`px-6 py-2 rounded-full font-medium transition cursor-pointer ${activeTab === 'messenger'
-                                ? 'text-white bg-white/20'
-                                : 'text-white/60 hover:text-white'
+                            className={`rounded-full px-6 transition-all duration-300 ${activeTab === 'messenger'
+                                ? 'bg-white text-blue-900 shadow-lg'
+                                : 'text-white/70 hover:text-white hover:bg-white/10'
                                 }`}
                         >
                             <i className="fab fa-facebook-messenger mr-2"></i>Messenger
-                        </button>
-                        <button
+                        </Button>
+                        <Button
+                            variant={activeTab === 'sms' ? 'secondary' : 'ghost'}
                             onClick={() => setActiveTab('sms')}
-                            className={`px-6 py-2 rounded-full font-medium transition cursor-pointer ${activeTab === 'sms'
-                                ? 'text-white bg-white/20'
-                                : 'text-white/60 hover:text-white'
+                            className={`rounded-full px-6 transition-all duration-300 ${activeTab === 'sms'
+                                ? 'bg-white text-green-900 shadow-lg'
+                                : 'text-white/70 hover:text-white hover:bg-white/10'
                                 }`}
                         >
                             <i className="fas fa-sms mr-2"></i>SMS
-                        </button>
+                        </Button>
                     </div>
                 </div>
 
                 {/* Messenger Flow */}
-                <div className={`fade-item ${activeTab === 'messenger' ? '' : 'hidden'}`}>
+                <div className={`fade-item ${activeTab === 'messenger' ? 'animate-in fade-in slide-in-from-bottom-4 duration-500' : 'hidden'}`}>
                     <div className="flex items-center justify-between gap-4">
                         <FlowStep icon="fas fa-comment-dots" bg="bg-blue-500" title="Start Chat" subtitle="Open Messenger" />
                         <FlowStep icon="fas fa-user-plus" bg="bg-green-500" title="Register" subtitle="Name + Mobile" />
@@ -54,7 +58,7 @@ export const UserFlow: React.FC<UserFlowProps> = ({ isActive }) => {
                 </div>
 
                 {/* SMS Flow */}
-                <div className={`fade-item ${activeTab === 'sms' ? '' : 'hidden'}`}>
+                <div className={`fade-item ${activeTab === 'sms' ? 'animate-in fade-in slide-in-from-bottom-4 duration-500' : 'hidden'}`}>
                     <div className="flex items-center justify-between gap-4">
                         <FlowStep icon="fas fa-mobile-alt" bg="bg-gray-600" title="Send BOOK" subtitle="To Hotline" />
                         <FlowStep icon="fas fa-list-ol" bg="bg-gray-500" title="Get Menu" subtitle="1-5 Options" />
@@ -92,8 +96,10 @@ const FlowStep: React.FC<{ icon: string; bg: string; title: string; subtitle: st
 );
 
 const ServiceCard: React.FC<{ icon: string; title: string }> = ({ icon, title }) => (
-    <div className="bg-white/10 backdrop-blur rounded-xl p-4 text-center">
-        <i className={`${icon} text-3xl text-white mb-2`}></i>
-        <div className="text-white text-sm font-medium">{title}</div>
-    </div>
+    <Card className="bg-white/10 backdrop-blur-md border-white/20 hover:bg-white/20 transition-all duration-300 hover:-translate-y-1 cursor-default">
+        <CardContent className="p-4 text-center flex flex-col items-center justify-center h-full">
+            <i className={`${icon} text-3xl text-white mb-3`}></i>
+            <div className="text-white text-sm font-medium leading-tight">{title}</div>
+        </CardContent>
+    </Card>
 );

@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { Button } from '@/components/ui/button';
 
 interface ScriptsDemoProps {
     isActive: boolean;
@@ -48,7 +49,8 @@ export const ScriptsDemo: React.FC<ScriptsDemoProps> = ({ isActive }) => {
         const showNext = () => {
             if (index >= data.length) return;
 
-            setMessages(prev => [...prev, data[index]]);
+            const nextMessage = data[index];
+            setMessages(prev => [...prev, nextMessage]);
             index++;
             setTimeout(showNext, delay);
         };
@@ -106,13 +108,13 @@ export const ScriptsDemo: React.FC<ScriptsDemoProps> = ({ isActive }) => {
                                     </div>
                                 ))}
                             </div>
-                            <div className="p-3 bg-black/20">
-                                <button
+                            <div className="p-3 bg-black/20 backdrop-blur-sm border-t border-white/10">
+                                <Button
                                     onClick={() => runDemo(messengerData, setMessengerMessages, 1000)}
-                                    className="w-full bg-blue-500 hover:bg-blue-600 text-white py-2 rounded-lg font-medium text-sm transition cursor-pointer"
+                                    className="w-full bg-blue-500 hover:bg-blue-600 text-white font-medium text-sm transition-all shadow-lg hover:shadow-blue-500/25"
                                 >
                                     <i className="fas fa-play mr-2"></i>Run Demo
-                                </button>
+                                </Button>
                             </div>
                         </div>
                     </div>
@@ -120,7 +122,7 @@ export const ScriptsDemo: React.FC<ScriptsDemoProps> = ({ isActive }) => {
                     {/* SMS Demo */}
                     <div className="fade-item">
                         <div className="flex items-center gap-3 mb-4">
-                            <div className="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center">
+                            <div className="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center shadow-lg shadow-green-500/30">
                                 <i className="fas fa-sms text-white"></i>
                             </div>
                             <div>
@@ -128,29 +130,29 @@ export const ScriptsDemo: React.FC<ScriptsDemoProps> = ({ isActive }) => {
                                 <div className="text-purple-200 text-xs">Text-Based Booking</div>
                             </div>
                         </div>
-                        <div className="chat-container" style={{ background: 'linear-gradient(180deg, #1a1a2e 0%, #16213e 100%)' }}>
-                            <div className="bg-green-600 px-4 py-3 flex items-center gap-3">
+                        <div className="chat-container shadow-2xl" style={{ background: 'linear-gradient(180deg, #1a1a2e 0%, #16213e 100%)' }}>
+                            <div className="bg-green-600 px-4 py-3 flex items-center gap-3 shadow-md">
                                 <div className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center">
                                     <i className="fas fa-phone text-white text-sm"></i>
                                 </div>
                                 <span className="text-white font-medium text-sm">0917-BRY-BOOK</span>
                             </div>
-                            <div ref={smsChatRef} className="chat-messages">
+                            <div ref={smsChatRef} className="chat-messages scrollbar-thin scrollbar-thumb-white/10 scrollbar-track-transparent">
                                 {smsMessages.map((msg, i) => (
                                     <div key={i} className={`chat-bubble flex ${msg.sender === 'user' ? 'justify-end' : 'justify-start'} mb-2`}>
-                                        <div className={`${msg.sender === 'user' ? 'bg-green-500' : 'bg-gray-600'} text-white px-3 py-2 rounded-xl max-w-[80%] text-xs whitespace-pre-line`}>
+                                        <div className={`${msg.sender === 'user' ? 'bg-green-500' : 'bg-gray-600'} text-white px-3 py-2 rounded-xl max-w-[80%] text-xs whitespace-pre-line shadow-sm`}>
                                             {msg.text}
                                         </div>
                                     </div>
                                 ))}
                             </div>
-                            <div className="p-3 bg-black/20">
-                                <button
+                            <div className="p-3 bg-black/20 backdrop-blur-sm border-t border-white/10">
+                                <Button
                                     onClick={() => runDemo(smsData, setSmsMessages, 1200)}
-                                    className="w-full bg-green-500 hover:bg-green-600 text-white py-2 rounded-lg font-medium text-sm transition cursor-pointer"
+                                    className="w-full bg-green-500 hover:bg-green-600 text-white font-medium text-sm transition-all shadow-lg hover:shadow-green-500/25"
                                 >
                                     <i className="fas fa-play mr-2"></i>Run Demo
-                                </button>
+                                </Button>
                             </div>
                         </div>
                     </div>

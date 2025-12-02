@@ -1,4 +1,5 @@
 import React from 'react';
+import { Button } from '@/components/ui/button';
 
 interface HeroProps {
     isActive: boolean;
@@ -28,27 +29,27 @@ export const Hero: React.FC<HeroProps> = ({ isActive, onExplore }) => {
                 </p>
 
                 <div className="fade-item flex flex-wrap justify-center gap-6 mb-12">
-                    <div className="flex items-center gap-3 bg-white/10 backdrop-blur px-6 py-4 rounded-2xl">
-                        <div className="icon-circle bg-blue-500">
-                            <i className="fab fa-facebook-messenger text-white"></i>
+                    <div className="flex items-center gap-3 bg-white/10 backdrop-blur-md px-6 py-4 rounded-2xl border border-white/10 hover:bg-white/20 transition-colors">
+                        <div className="icon-circle bg-blue-500 flex items-center justify-center w-12 h-12 rounded-full shadow-lg shadow-blue-500/30">
+                            <i className="fab fa-facebook-messenger text-white text-xl"></i>
                         </div>
                         <div className="text-left">
                             <div className="text-white font-bold">Messenger</div>
                             <div className="text-blue-200 text-sm">Chatbot</div>
                         </div>
                     </div>
-                    <div className="flex items-center gap-3 bg-white/10 backdrop-blur px-6 py-4 rounded-2xl">
-                        <div className="icon-circle bg-green-500">
-                            <i className="fas fa-sms text-white"></i>
+                    <div className="flex items-center gap-3 bg-white/10 backdrop-blur-md px-6 py-4 rounded-2xl border border-white/10 hover:bg-white/20 transition-colors">
+                        <div className="icon-circle bg-green-500 flex items-center justify-center w-12 h-12 rounded-full shadow-lg shadow-green-500/30">
+                            <i className="fas fa-sms text-white text-xl"></i>
                         </div>
                         <div className="text-left">
                             <div className="text-white font-bold">SMS</div>
                             <div className="text-green-200 text-sm">Hotline</div>
                         </div>
                     </div>
-                    <div className="flex items-center gap-3 bg-white/10 backdrop-blur px-6 py-4 rounded-2xl">
-                        <div className="icon-circle bg-amber-500">
-                            <i className="fas fa-bell text-white"></i>
+                    <div className="flex items-center gap-3 bg-white/10 backdrop-blur-md px-6 py-4 rounded-2xl border border-white/10 hover:bg-white/20 transition-colors">
+                        <div className="icon-circle bg-amber-500 flex items-center justify-center w-12 h-12 rounded-full shadow-lg shadow-amber-500/30">
+                            <i className="fas fa-bell text-white text-xl"></i>
                         </div>
                         <div className="text-left">
                             <div className="text-white font-bold">Smart</div>
@@ -57,12 +58,13 @@ export const Hero: React.FC<HeroProps> = ({ isActive, onExplore }) => {
                     </div>
                 </div>
 
-                <button
+                <Button
                     onClick={onExplore}
-                    className="fade-item bg-white text-blue-700 px-10 py-4 rounded-full font-bold text-lg hover:shadow-2xl hover:scale-105 transition-all cursor-pointer"
+                    size="lg"
+                    className="fade-item bg-white text-blue-700 hover:bg-blue-50 hover:text-blue-800 text-lg px-8 py-6 rounded-full shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 font-bold"
                 >
                     Explore Documentation <i className="fas fa-arrow-right ml-2"></i>
-                </button>
+                </Button>
             </div>
         </section>
     );
