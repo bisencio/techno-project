@@ -10,12 +10,12 @@ export const Technical: React.FC<TechnicalProps> = ({ isActive }) => {
         <section className={`section-panel bg-gradient-5 ${isActive ? 'active' : ''}`} id="section-4">
             <div className="bg-pattern"></div>
 
-            <div className="w-full max-w-7xl relative z-10">
+            <div className="w-full max-w-5xl relative z-10">
                 <h2 className="fade-item text-4xl font-bold text-white text-center mb-8">
                     <i className="fas fa-cogs text-cyan-400 mr-3"></i>Technical Requirements
                 </h2>
 
-                <div className="grid grid-cols-3 gap-6 mb-8">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
                     <TechCard
                         icon="fas fa-database"
                         bg="bg-gradient-to-br from-blue-500 to-blue-700"
@@ -36,40 +36,20 @@ export const Technical: React.FC<TechnicalProps> = ({ isActive }) => {
                     />
                 </div>
 
-                {/* Cost Breakdown */}
-                <div className="fade-item grid grid-cols-2 gap-6">
-                    <Card className="bg-white/10 backdrop-blur-md border-white/20 text-white">
+                {/* Tech Stack */}
+                <div className="fade-item flex justify-center mt-8">
+                    <Card className="bg-white/10 backdrop-blur-md border-white/20 text-white w-full max-w-2xl">
                         <CardHeader>
                             <CardTitle className="text-lg font-bold flex items-center gap-2">
                                 <i className="fas fa-code text-cyan-400"></i> Tech Stack
                             </CardTitle>
                         </CardHeader>
                         <CardContent>
-                            <div className="grid grid-cols-2 gap-3">
+                            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
                                 <StackItem icon="fab fa-node-js" color="text-green-400" title="Node.js" />
                                 <StackItem icon="fab fa-facebook" color="text-blue-400" title="Graph API" />
                                 <StackItem icon="fab fa-react" color="text-cyan-400" title="React Admin" />
                                 <StackItem icon="fas fa-robot" color="text-purple-400" title="Dialogflow" />
-                            </div>
-                        </CardContent>
-                    </Card>
-
-                    <Card className="bg-white/10 backdrop-blur-md border-white/20 text-white">
-                        <CardHeader>
-                            <CardTitle className="text-lg font-bold flex items-center gap-2">
-                                <i className="fas fa-peso-sign text-green-400"></i> Monthly Cost
-                            </CardTitle>
-                        </CardHeader>
-                        <CardContent>
-                            <div className="space-y-2">
-                                <CostItem label="Cloud Hosting" cost="₱300-600" />
-                                <CostItem label="SMS (500 msgs)" cost="₱175-250" />
-                                <CostItem label="Messenger API" cost="FREE" isFree />
-                                <CostItem label="Domain (.ph)" cost="₱100-200" />
-                                <div className="border-t border-white/20 my-2 pt-2 flex justify-between">
-                                    <span className="text-white font-bold">TOTAL</span>
-                                    <span className="text-cyan-400 font-bold font-mono">₱575 - ₱1,050</span>
-                                </div>
                             </div>
                         </CardContent>
                     </Card>
@@ -80,13 +60,13 @@ export const Technical: React.FC<TechnicalProps> = ({ isActive }) => {
 };
 
 const TechCard: React.FC<{ icon: string; bg: string; title: string; items: string[] }> = ({ icon, bg, title, items }) => (
-    <Card className="fade-item bg-white/10 backdrop-blur-md border-white/20 text-white hover:bg-white/15 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
-        <CardContent className="p-6 text-center">
+    <Card className="fade-item bg-white/10 backdrop-blur-md border-white/20 text-white hover:bg-white/15 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl h-full">
+        <CardContent className="p-6 text-center h-full flex flex-col">
             <div className={`icon-circle ${bg} mx-auto mb-4 flex items-center justify-center w-16 h-16 rounded-full shadow-lg`}>
                 <i className={`${icon} text-white text-2xl`}></i>
             </div>
             <h3 className="text-lg font-bold text-white mb-3">{title}</h3>
-            <div className="text-blue-100/80 text-sm space-y-2">
+            <div className="text-blue-100/80 text-sm space-y-2 flex-grow">
                 {items.map((item, i) => (
                     <div key={i} className="flex items-center justify-center gap-2">
                         <i className="fas fa-check text-green-400 text-xs"></i>
@@ -105,9 +85,4 @@ const StackItem: React.FC<{ icon: string; color: string; title: string }> = ({ i
     </div>
 );
 
-const CostItem: React.FC<{ label: string; cost: string; isFree?: boolean }> = ({ label, cost, isFree }) => (
-    <div className="flex justify-between text-sm">
-        <span className="text-gray-400">{label}</span>
-        <span className={`${isFree ? 'text-green-400' : 'text-white'} font-mono`}>{cost}</span>
-    </div>
-);
+
