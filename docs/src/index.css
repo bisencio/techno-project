@@ -1,0 +1,346 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    :root {
+        --background: 222.2 84% 4.9%;
+        --foreground: 210 40% 98%;
+        --card: 222.2 84% 4.9%;
+        --card-foreground: 210 40% 98%;
+        --popover: 222.2 84% 4.9%;
+        --popover-foreground: 210 40% 98%;
+        --primary: 217.2 91.2% 59.8%;
+        --primary-foreground: 222.2 47.4% 11.2%;
+        --secondary: 217.2 32.6% 17.5%;
+        --secondary-foreground: 210 40% 98%;
+        --muted: 217.2 32.6% 17.5%;
+        --muted-foreground: 215 20.2% 65.1%;
+        --accent: 217.2 32.6% 17.5%;
+        --accent-foreground: 210 40% 98%;
+        --destructive: 0 62.8% 30.6%;
+        --destructive-foreground: 210 40% 98%;
+        --border: 217.2 32.6% 17.5%;
+        --input: 217.2 32.6% 17.5%;
+        --ring: 224.3 76.3% 48%;
+        --chart-1: 220 70% 50%;
+        --chart-2: 160 60% 45%;
+        --chart-3: 30 80% 55%;
+        --chart-4: 280 65% 60%;
+        --chart-5: 340 75% 55%;
+        --radius: 0.5rem;
+    }
+}
+
+* {
+    font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    background: #0f172a;
+}
+
+/* Section Panels */
+.section-panel {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.8s ease, visibility 0.8s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 80px;
+    overflow: hidden;
+}
+
+.section-panel.active {
+    opacity: 1;
+    visibility: visible;
+    z-index: 10;
+}
+
+/* Content Animations */
+.fade-item {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+    transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.section-panel.active .fade-item {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+.section-panel.active .fade-item:nth-child(1) {
+    transition-delay: 0.1s;
+}
+
+.section-panel.active .fade-item:nth-child(2) {
+    transition-delay: 0.15s;
+}
+
+.section-panel.active .fade-item:nth-child(3) {
+    transition-delay: 0.2s;
+}
+
+.section-panel.active .fade-item:nth-child(4) {
+    transition-delay: 0.25s;
+}
+
+.section-panel.active .fade-item:nth-child(5) {
+    transition-delay: 0.3s;
+}
+
+.section-panel.active .fade-item:nth-child(6) {
+    transition-delay: 0.35s;
+}
+
+.section-panel.active .fade-item:nth-child(7) {
+    transition-delay: 0.4s;
+}
+
+.section-panel.active .fade-item:nth-child(8) {
+    transition-delay: 0.45s;
+}
+
+/* Navigation Dots */
+.nav-dots {
+    position: fixed;
+    right: 30px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.nav-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.nav-dot:hover {
+    transform: scale(1.4);
+    background: rgba(255, 255, 255, 0.5);
+}
+
+.nav-dot.active {
+    background: #3b82f6;
+    border-color: white;
+    transform: scale(1.3);
+}
+
+.nav-dot-label {
+    position: absolute;
+    right: 24px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 11px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.nav-dot:hover .nav-dot-label {
+    opacity: 1;
+}
+
+/* Progress Bar */
+.progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #3b82f6, #06b6d4, #10b981);
+    z-index: 1000;
+    transition: width 0.5s ease;
+}
+
+/* Section Counter */
+.section-counter {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    font-size: 14px;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 10px 25px;
+    border-radius: 30px;
+    backdrop-filter: blur(10px);
+}
+
+.section-counter button {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.section-counter button:hover {
+    background: rgba(255, 255, 255, 0.4);
+    transform: scale(1.1);
+}
+
+.section-counter button:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Infographic Styles */
+.info-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    padding: 25px;
+    transition: all 0.3s ease;
+}
+
+.info-card:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.icon-circle {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    top: 25px;
+    width: 30px;
+    height: 2px;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.5), transparent);
+}
+
+.flow-step:last-child::after {
+    display: none;
+}
+
+.pulse {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 0.7;
+        transform: scale(1.05);
+    }
+}
+
+/* Chat Demo */
+.chat-container {
+    background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    overflow: hidden;
+    height: 320px;
+}
+
+.chat-messages {
+    height: 240px;
+    overflow-y: auto;
+    padding: 15px;
+}
+
+.chat-bubble {
+    animation: bubbleIn 0.3s ease;
+}
+
+@keyframes bubbleIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Gradient Backgrounds */
+.bg-gradient-1 {
+    background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #0ea5e9 100%);
+}
+
+.bg-gradient-2 {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+}
+
+.bg-gradient-3 {
+    background: linear-gradient(135deg, #064e3b 0%, #047857 50%, #10b981 100%);
+}
+
+.bg-gradient-4 {
+    background: linear-gradient(135deg, #581c87 0%, #7c3aed 50%, #a855f7 100%);
+}
+
+.bg-gradient-5 {
+    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+}
+
+.bg-gradient-6 {
+    background: linear-gradient(135deg, #0c4a6e 0%, #0369a1 50%, #0ea5e9 100%);
+}
+
+/* Decorative Elements */
+.bg-pattern {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0.05;
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    pointer-events: none;
+}
+
+.floating-icon {
+    position: absolute;
+    opacity: 0.1;
+    font-size: 120px;
+    color: white;
+}
