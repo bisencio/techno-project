@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Button } from '@/components/ui/button';
 
 interface UserFlowProps {
     isActive: boolean;
@@ -27,17 +28,17 @@ const smsSteps = [
 export const UserFlow: React.FC<UserFlowProps> = ({ isActive }) => {
     const [activeTab, setActiveTab] = useState<'messenger' | 'sms'>('messenger');
     const [activeStep, setActiveStep] = useState(0);
-    const [isAutoPlaying, setIsAutoPlaying] = useState(true);
 
     const currentSteps = activeTab === 'messenger' ? messengerSteps : smsSteps;
 
+    // Autoplay functionality retained
     useEffect(() => {
-        if (!isActive || !isAutoPlaying) return;
+        if (!isActive) return;
         const interval = setInterval(() => {
             setActiveStep((prev) => (prev + 1) % currentSteps.length);
         }, 2500);
         return () => clearInterval(interval);
-    }, [isActive, isAutoPlaying, currentSteps.length]);
+    }, [isActive, currentSteps.length]);
 
     useEffect(() => {
         setActiveStep(0);
@@ -45,81 +46,88 @@ export const UserFlow: React.FC<UserFlowProps> = ({ isActive }) => {
 
     const handleStepClick = (index: number) => {
         setActiveStep(index);
-        setIsAutoPlaying(false);
     };
 
-    // Calculate progress percentage based on step position
     const progressWidth = (activeStep / (currentSteps.length - 1)) * 100;
 
     return (
         <section className={`section-panel bg-gradient-3 ${isActive ? 'active' : ''}`} id="section-2">
             <div className="bg-pattern"></div>
-            <div className="w-full max-w-7xl relative z-10 flex flex-col justify-between h-full py-6 md:py-8 px-4 md:px-16">
+            <div className="w-full max-w-7xl relative z-10 flex flex-col justify-between h-full py-6 md:py-8 px-4 md:px-16 mx-auto">
                 
-                {/* Header */}
-                <div className="fade-item text-center mb-6">
-                    <h2 className="text-3xl md:text-4xl font-extrabold text-white mb-6 tracking-tight">
+                {/* Header - Title Only */}
+                <div className="fade-item text-center mb-4">
+                    <h2 className="text-3xl md:text-4xl font-extrabold text-white tracking-tight">
                         <i className="fas fa-project-diagram text-emerald-300 mr-3"></i>
                         User Journey Flow
                     </h2>
-                    
-                    {/* Toggle Buttons */}
-                    <div className="inline-flex items-center bg-black/40 backdrop-blur-md rounded-full p-2 border border-white/10 shadow-xl gap-3">
-                        <button
-                            onClick={() => setActiveTab('messenger')}
-                            className={`
-                                relative rounded-full px-10 py-3.5 text-base font-bold transition-all duration-300 whitespace-nowrap flex items-center gap-3
-                                ${activeTab === 'messenger'
-                                    ? 'bg-white text-emerald-900 shadow-lg scale-105'
-                                    : 'text-white/70 hover:text-white hover:bg-white/10'
-                                }
-                            `}
-                        >
-                            <i className="fab fa-facebook-messenger text-xl"></i>
-                            <span>Messenger</span>
-                        </button>
-                        
-                        <button
-                            onClick={() => setActiveTab('sms')}
-                            className={`
-                                relative rounded-full px-10 py-3.5 text-base font-bold transition-all duration-300 whitespace-nowrap flex items-center gap-3
-                                ${activeTab === 'sms'
-                                    ? 'bg-white text-emerald-900 shadow-lg scale-105'
-                                    : 'text-white/70 hover:text-white hover:bg-white/10'
-                                }
-                            `}
-                        >
-                            <i className="fas fa-sms text-xl"></i>
-                            <span>SMS</span>
-                        </button>
-                    </div>
                 </div>
 
-                {/* Steps Timeline - Fixed Alignment */}
-                <div className="fade-item w-full my-8 max-w-4xl mx-auto px-4">
-                    <div className="relative">
-                        {/* Steps Row */}
-                        <div className="flex justify-between items-center relative">
+                {/* Toggle Buttons - Using shadcn/ui Button with fixed width */}
+                {/* Toggle Buttons - Enlarged */}
+                <div className="fade-item flex justify-center mb-10">
+                <div className="inline-flex items-center bg-black/40 backdrop-blur-md rounded-full p-2.5 border border-white/10 shadow-xl gap-2">
+                    <Button
+                    onClick={() => setActiveTab('messenger')}
+                    variant="ghost"
+                    className={`
+                        rounded-full px-8 py-3 h-11 md:h-12
+                        text-sm md:text-base font-semibold
+                        transition-all duration-300
+                        flex items-center justify-center gap-2.5
+                        min-w-[170px] md:min-w-[190px]
+                        whitespace-nowrap overflow-visible
+                        ${activeTab === 'messenger'
+                        ? 'bg-white text-emerald-900 hover:bg-white/90 shadow-lg'
+                        : 'bg-transparent text-white/70 hover:text-white hover:bg-white/10'
+                        }
+                    `}
+                    >
+                    <i className="fab fa-facebook-messenger text-xl md:text-2xl"></i>
+                    <span>Messenger</span>
+                    </Button>
+                    
+                    <Button
+                    onClick={() => setActiveTab('sms')}
+                    variant="ghost"
+                    className={`
+                        rounded-full px-8 py-3 h-11 md:h-12
+                        text-sm md:text-base font-semibold
+                        transition-all duration-300
+                        flex items-center justify-center gap-2.5
+                        min-w-[140px] md:min-w-[160px]
+                        whitespace-nowrap overflow-visible
+                        ${activeTab === 'sms'
+                        ? 'bg-white text-emerald-900 hover:bg-white/90 shadow-lg'
+                        : 'bg-transparent text-white/70 hover:text-white hover:bg-white/10'
+                        }
+                    `}
+                    >
+                    <i className="fas fa-sms text-xl md:text-2xl"></i>
+                    <span>SMS</span>
+                    </Button>
+                </div>
+                </div>
+                {/* Steps Timeline - CENTERED */}
+                <div className="fade-item w-full my-6 flex justify-center">
+                    <div className="w-full max-w-4xl px-8">
+                        <div className="relative flex items-start justify-between">
                             
-                            {/* Background Track - Positioned to center of icons */}
+                            {/* Background Track */}
                             <div 
-                                className="absolute h-1 bg-white/20 rounded-full z-0"
+                                className="absolute top-7 h-1 bg-white/20 rounded-full"
                                 style={{
-                                    top: '50%',
                                     left: '28px',
                                     right: '28px',
-                                    transform: 'translateY(-50%)'
                                 }}
                             />
                             
                             {/* Progress Track */}
                             <div
-                                className="absolute h-1 bg-gradient-to-r from-emerald-400 to-cyan-300 rounded-full transition-all duration-700 ease-out z-0 shadow-[0_0_15px_rgba(52,211,153,0.6)]"
+                                className="absolute top-7 h-1 bg-gradient-to-r from-emerald-400 to-cyan-300 rounded-full transition-all duration-700 ease-out shadow-[0_0_15px_rgba(52,211,153,0.6)]"
                                 style={{ 
-                                    top: '50%',
                                     left: '28px',
-                                    width: `calc(${progressWidth}% - ${progressWidth * 0.56 / (currentSteps.length - 1)}px)`,
-                                    transform: 'translateY(-50%)'
+                                    width: `calc(${progressWidth}% * (100% - 56px) / 100%)`,
                                 }}
                             />
                             
@@ -130,7 +138,6 @@ export const UserFlow: React.FC<UserFlowProps> = ({ isActive }) => {
                                     className="flex flex-col items-center cursor-pointer relative z-10"
                                     onClick={() => handleStepClick(index)}
                                 >
-                                    {/* Icon Circle */}
                                     <div
                                         className={`
                                             w-14 h-14 rounded-full flex items-center justify-center
@@ -148,9 +155,9 @@ export const UserFlow: React.FC<UserFlowProps> = ({ isActive }) => {
                                         <i className={`${step.icon} text-xl`}></i>
                                     </div>
                                     
-                                    {/* Step Title - Below icons */}
+                                    {/* Lowered step title with more margin */}
                                     <span className={`
-                                        mt-3 text-xs font-bold uppercase tracking-wider whitespace-nowrap
+                                        mt-5 text-[10px] font-bold uppercase tracking-wider whitespace-nowrap
                                         transition-all duration-300
                                         ${index === activeStep ? 'text-white opacity-100' : 'text-white/50 opacity-70'}
                                     `}>
@@ -162,13 +169,14 @@ export const UserFlow: React.FC<UserFlowProps> = ({ isActive }) => {
                     </div>
                 </div>
 
-                {/* Active Step Card */}
+                {/* Active Step Card - CENTERED (removed pause/play button) */}
                 <div className="fade-item w-full flex justify-center mb-8">
                     <div className="relative w-full max-w-xl">
                         <div className="absolute inset-0 bg-emerald-500/30 blur-3xl rounded-full opacity-50"></div>
                         
                         <div className="relative bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl p-6 flex items-center gap-6 shadow-2xl">
-                            <div className={`w-18 h-18 ${currentSteps[activeStep].bg} rounded-2xl flex items-center justify-center shadow-lg flex-shrink-0 transition-all duration-500`}
+                            <div 
+                                className={`${currentSteps[activeStep].bg} rounded-2xl flex items-center justify-center shadow-lg flex-shrink-0 transition-all duration-500`}
                                 style={{ width: '72px', height: '72px' }}
                             >
                                 <i className={`${currentSteps[activeStep].icon} text-white text-3xl`}></i>
@@ -179,30 +187,15 @@ export const UserFlow: React.FC<UserFlowProps> = ({ isActive }) => {
                                     <span className="text-emerald-300 text-sm font-bold tracking-wider uppercase">
                                         Step {activeStep + 1} of {currentSteps.length}
                                     </span>
-                                    {isAutoPlaying && (
-                                        <span className="flex h-2.5 w-2.5 relative">
-                                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                                            <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
-                                        </span>
-                                    )}
                                 </div>
                                 <h3 className="text-white font-bold text-2xl leading-tight mb-1">{currentSteps[activeStep].title}</h3>
                                 <p className="text-white/70 text-sm">{currentSteps[activeStep].description}</p>
-                            </div>
-                            
-                            <div className="border-l border-white/20 pl-5">
-                                <button
-                                    onClick={(e) => { e.stopPropagation(); setIsAutoPlaying(!isAutoPlaying); }}
-                                    className="w-11 h-11 rounded-full bg-white/10 hover:bg-white/25 flex items-center justify-center transition-all duration-300 text-white/80 hover:text-white hover:scale-110"
-                                >
-                                    <i className={`fas ${isAutoPlaying ? 'fa-pause' : 'fa-play'} text-sm`}></i>
-                                </button>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                {/* Available Services */}
+                {/* Available Services - CENTERED */}
                 <div className="fade-item">
                     <div className="flex items-center justify-center gap-4 mb-5">
                         <div className="h-px w-16 bg-gradient-to-r from-transparent to-white/30"></div>
