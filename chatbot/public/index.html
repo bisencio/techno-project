@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barangay San Miguel - Admin Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles.css">
+</head>
+
+<body>
+    <!-- Login Screen -->
+    <div id="login-screen" class="login-container">
+        <div class="login-card">
+            <div class="login-header">
+                <div class="login-logo">
+                    <span class="logo-icon">🏛️</span>
+                </div>
+                <h1>Barangay San Miguel</h1>
+                <p>Admin Dashboard</p>
+            </div>
+
+            <form id="login-form" class="login-form">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" required placeholder="Enter username">
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required placeholder="Enter password">
+                </div>
+
+                <div id="login-error" class="error-message hidden"></div>
+
+                <button type="submit" class="btn btn-primary btn-full">
+                    <span class="btn-text">Sign In</span>
+                    <span class="btn-loader hidden"></span>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Dashboard -->
+    <div id="dashboard" class="dashboard hidden">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <span class="logo-icon">🏛️</span>
+                <div class="sidebar-brand">
+                    <h2>Barangay</h2>
+                    <span>San Miguel</span>
+                </div>
+            </div>
+
+            <nav class="sidebar-nav">
+                <a href="#" class="nav-item active" data-view="overview">
+                    <span class="nav-icon">📊</span>
+                    <span>Overview</span>
+                </a>
+                <a href="#" class="nav-item" data-view="appointments">
+                    <span class="nav-icon">📋</span>
+                    <span>Appointments</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <button id="logout-btn" class="btn btn-ghost btn-full">
+                    <span class="nav-icon">🚪</span>
+                    <span>Logout</span>
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <div class="header-left">
+                    <button id="menu-toggle" class="menu-toggle">☰</button>
+                    <h1 id="page-title">Overview</h1>
+                </div>
+                <div class="header-right">
+                    <span class="current-date" id="current-date"></span>
+                    <div class="user-info">
+                        <span id="user-name">Admin</span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Overview View -->
+            <section id="view-overview" class="view">
+                <!-- Stats Cards -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon stat-icon-blue">📅</div>
+                        <div class="stat-content">
+                            <span class="stat-value" id="stat-today">0</span>
+                            <span class="stat-label">Today's Appointments</span>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon stat-icon-orange">⏳</div>
+                        <div class="stat-content">
+                            <span class="stat-value" id="stat-pending">0</span>
+                            <span class="stat-label">Pending</span>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon stat-icon-green">✅</div>
+                        <div class="stat-content">
+                            <span class="stat-value" id="stat-completed">0</span>
+                            <span class="stat-label">Completed</span>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon stat-icon-purple">📊</div>
+                        <div class="stat-content">
+                            <span class="stat-value" id="stat-week">0</span>
+                            <span class="stat-label">This Week</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Appointments -->
+                <div class="card">
+                    <div class="card-header">
+                        <h2>Recent Appointments</h2>
+                        <a href="#" class="btn btn-ghost" data-view="appointments">View All →</a>
+                    </div>
+                    <div class="table-container">
+                        <table class="table" id="recent-table">
+                            <thead>
+                                <tr>
+                                    <th>Reference</th>
+                                    <th>Name</th>
+                                    <th>Service</th>
+                                    <th>Date & Time</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="recent-tbody">
+                                <tr>
+                                    <td colspan="5" class="table-empty">Loading...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Appointments View -->
+            <section id="view-appointments" class="view hidden">
+                <!-- Filters -->
+                <div class="filters-bar">
+                    <div class="search-box">
+                        <span class="search-icon">🔍</span>
+                        <input type="text" id="search-input" placeholder="Search by name or reference...">
+                    </div>
+
+                    <div class="filter-group">
+                        <select id="filter-status">
+                            <option value="">All Status</option>
+                            <option value="pending">Pending</option>
+                            <option value="confirmed">Confirmed</option>
+                            <option value="completed">Completed</option>
+                            <option value="cancelled">Cancelled</option>
+                        </select>
+
+                        <select id="filter-service">
+                            <option value="">All Services</option>
+                            <option value="Barangay Clearance">Barangay Clearance</option>
+                            <option value="Barangay ID">Barangay ID</option>
+                            <option value="Health Appointment">Health Appointment</option>
+                            <option value="Certificate of Indigency">Certificate of Indigency</option>
+                        </select>
+
+                        <input type="date" id="filter-date" title="Filter by date">
+
+                        <button id="clear-filters" class="btn btn-ghost">Clear</button>
+                    </div>
+                </div>
+
+                <!-- Appointments Table -->
+                <div class="card">
+                    <div class="card-header">
+                        <h2>All Appointments</h2>
+                        <span class="badge" id="total-count">0 total</span>
+                    </div>
+                    <div class="table-container">
+                        <table class="table" id="appointments-table">
+                            <thead>
+                                <tr>
+                                    <th>Reference</th>
+                                    <th>Name</th>
+                                    <th>Phone</th>
+                                    <th>Service</th>
+                                    <th>Date & Time</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="appointments-tbody">
+                                <tr>
+                                    <td colspan="7" class="table-empty">Loading...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Edit Modal -->
+    <div id="edit-modal" class="modal hidden">
+        <div class="modal-backdrop"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Edit Appointment</h2>
+                <button class="modal-close" id="modal-close">&times;</button>
+            </div>
+
+            <form id="edit-form" class="modal-form">
+                <input type="hidden" id="edit-id">
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="edit-reference">Reference Number</label>
+                        <input type="text" id="edit-reference" disabled>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="edit-status">Status</label>
+                        <select id="edit-status">
+                            <option value="pending">Pending</option>
+                            <option value="confirmed">Confirmed</option>
+                            <option value="completed">Completed</option>
+                            <option value="cancelled">Cancelled</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="edit-name">Full Name</label>
+                        <input type="text" id="edit-name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="edit-phone">Phone Number</label>
+                        <input type="tel" id="edit-phone" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="edit-service">Service</label>
+                        <select id="edit-service">
+                            <option value="Barangay Clearance">Barangay Clearance</option>
+                            <option value="Barangay ID">Barangay ID</option>
+                            <option value="Health Appointment">Health Appointment</option>
+                            <option value="Certificate of Indigency">Certificate of Indigency</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="edit-date">Appointment Date & Time</label>
+                        <input type="datetime-local" id="edit-date" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="edit-notes">Notes</label>
+                    <textarea id="edit-notes" rows="3" placeholder="Add notes..."></textarea>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-ghost" id="modal-cancel">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Delete Confirmation Modal -->
+    <div id="delete-modal" class="modal hidden">
+        <div class="modal-backdrop"></div>
+        <div class="modal-content modal-small">
+            <div class="modal-header">
+                <h2>Delete Appointment</h2>
+                <button class="modal-close" id="delete-modal-close">&times;</button>
+            </div>
+
+            <div class="modal-body">
+                <p>Are you sure you want to delete appointment <strong id="delete-reference"></strong>?</p>
+                <p class="text-muted">This action cannot be undone.</p>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-ghost" id="delete-cancel">Cancel</button>
+                <button type="button" class="btn btn-danger" id="delete-confirm">Delete</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <script src="/app.js"></script>
+</body>
+
+</html>

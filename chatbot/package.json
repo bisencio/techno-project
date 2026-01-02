@@ -1,7 +1,9 @@
 {
+  "name": "barangay-queueing-system",
   "type": "module",
   "dependencies": {
     "axios": "^1.13.2",
-    "dotenv": "^17.2.3"
+    "dotenv": "^17.2.3",
+    "mongodb": "^6.3.0"
   }
 }

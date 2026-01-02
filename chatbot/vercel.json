@@ -4,9 +4,29 @@
     {
       "src": "api/**/*.js",
       "use": "@vercel/node"
+    },
+    {
+      "src": "public/**",
+      "use": "@vercel/static"
     }
   ],
   "routes": [
+    {
+      "src": "/api/webhook",
+      "dest": "/api/webhook.js"
+    },
+    {
+      "src": "/api/appointments",
+      "dest": "/api/appointments.js"
+    },
+    {
+      "src": "/api/auth",
+      "dest": "/api/auth.js"
+    },
+    {
+      "src": "/api/stats",
+      "dest": "/api/stats.js"
+    },
     {
       "src": "/webhook",
       "dest": "/api/webhook.js"
@@ -22,6 +42,18 @@
     {
       "src": "/deletion",
       "dest": "/api/deletion.js"
+    },
+    {
+      "src": "/styles.css",
+      "dest": "/public/styles.css"
+    },
+    {
+      "src": "/app.js",
+      "dest": "/public/app.js"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/public/index.html"
     }
   ]
 }
