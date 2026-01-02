@@ -14,7 +14,7 @@ export default async function handler(req, res) {
     if (mode === 'subscribe' && token === VERIFY_TOKEN) {
       console.log('Webhook verified!');
       return res.status(200).send(challenge);
-    }
+    } 
     return res.status(403).send('Forbidden');
   }
 
@@ -24,11 +24,16 @@ export default async function handler(req, res) {
 
     if (body.object === 'page') {
       for (const entry of body.entry) {
+        if (!entry.messaging) continue;
+
         const event = entry.messaging[0];
         const senderId = event.sender.id;
 
         if (event.message?.text) {
-          await sendMessage(senderId, `You said: "${event.message.text}"`);
+          const text = event.message.text.trim();
+          console.log(`Received message from ${senderId}: ${text}`);
+
+          await handleMessage(senderId, text);
         }
       }
       return res.status(200).send('EVENT_RECEIVED');
@@ -39,15 +44,32 @@ export default async function handler(req, res) {
   return res.status(405).send('Method Not Allowed');
 }
 
+async function handleMessage(senderId, text) {
+  // Simple logic for now, can be expanded
+  const response = `You said: "${text}"`;
+  await sendMessage(senderId, response);
+}
+
 async function sendMessage(recipientId, messageText) {
   const url = `https://graph.facebook.com/v18.0/me/messages?access_token=${PAGE_ACCESS_TOKEN}`;
-  
-  await fetch(url, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      recipient: { id: recipientId },
-      message: { text: messageText },
-    }),
-  });
+
+  try {
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        recipient: { id: recipientId },
+        message: { text: messageText },
+      }),
+    });
+
+    const data = await response.json();
+    if (!response.ok) {
+      console.error('FB API Error:', data.error?.message || response.statusText);
+    } else {
+      console.log('Message sent successfully:', data.message_id);
+    }
+  } catch (error) {
+    console.error('Network error sending message:', error.message);
+  }
 }
